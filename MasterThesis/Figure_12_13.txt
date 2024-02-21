@@ -1,0 +1,36 @@
+### 
+# Arzola Röber
+#
+p'= pd - delta*f - alpha*p + ((r*p**q)/(m**q+p**q))
+f' = f*(1-f)*(-v + xi*f + (kappa*p**b/(h**b+p**b)))*s
+#
+# parameters
+par   h=0.1, xi=0.043, kappa=0.05, delta=0.05, r=0.46, s=1, alpha=0.28, v=0.041, b=2, pd=0.06, q=2, m=1
+# initial value
+init p=0.98064, f=0.86134
+#
+# OPTIONS FOR XPP
+# total amount of time to integrate, time step, Runge Kutta 
+@ total=500,dt=0.1, meth=cvode, nmesh=1000, BANDUP=1, BANDLO=0
+# total number of time steps that will be kept in memory(default 5000)
+@ maxstor=100000
+# axes options
+@ xp=p,yp=f,xlo=0,xhi=1.5,ylo=0,yhi=1
+#
+# OPTIONS FOR AUTO
+# axes of the bifurcation diagram
+@ autoxmin=0,autoxmax=2,autoymin=0, autoymax=2
+# range of the bifurcation parameter
+@ parmin = 0, parmax = 2
+# numerics for the continuation
+@ ds=0.001,dsmin=0.0001,dsmax=0.01,nmax=1000
+#
+# "SPECIAL" OPTIONS
+# maximum bound any plotted variable can reach in magnitude (standard 100)
+@ bound=100
+# upper bound for the L2 norm of the solution (standard 100)
+# If it's greater than this the calculation will stop
+@ normmax=100 
+# bell off
+@ bell=0
+done
